@@ -127,6 +127,37 @@ The proposed entry market is **one council service area**, allowing the workflow
 
 The target architecture connects citizen reporting, secure intake, AI assistance and authority operations.
 
+```mermaid
+flowchart LR
+    PWA["Citizen PWA<br/>photo · text · GPS · map"] --> EDGE["Cloudflare Workers<br/>WAF and secure intake"]
+    PWA --> VOICE["ElevenLabs<br/>BM / EN voice"]
+    VOICE --> EDGE
+    EDGE --> PRIVACY["Privacy processing<br/>faces · plates · personal text"]
+    PRIVACY --> FLOW["LangGraph + Gemini<br/>triage · planning · verification"]
+    FLOW --> VISION["Visual understanding<br/>CLIP · RT-DETRv2 · DINOv2"]
+    FLOW --> GEO["Geographic planning<br/>PostGIS · pgvector · OSRM · OR-Tools"]
+    VISION --> FLOW
+    GEO --> FLOW
+    FLOW --> REVIEW["Authority dashboard + AI Studio<br/>human review · approval · dispatch"]
+    REVIEW --> DATA["Supabase<br/>PostgreSQL · Storage · Realtime"]
+    DATA --> PWA
+    DATA --> LEARNING["Reviewed learning<br/>DVC · evaluation · Cosign releases"]
+    LEARNING -. "approved updates" .-> FLOW
+
+    classDef citizen fill:#1257A6,stroke:#73B8FF,color:#FFFFFF
+    classDef intake fill:#087E83,stroke:#71D5D0,color:#FFFFFF
+    classDef ai fill:#6841A8,stroke:#BFA4ED,color:#FFFFFF
+    classDef authority fill:#9A5700,stroke:#F7BE62,color:#FFFFFF
+    classDef data fill:#20734B,stroke:#8CD8A8,color:#FFFFFF
+    classDef learning fill:#425269,stroke:#A5B8D1,color:#FFFFFF
+    class PWA citizen
+    class EDGE,VOICE,PRIVACY intake
+    class FLOW,VISION,GEO ai
+    class REVIEW authority
+    class DATA data
+    class LEARNING learning
+```
+
 | Layer | Technologies | Intended responsibility |
 | --- | --- | --- |
 | Citizen experience | Installable PWA | Photo, voice, text and GPS input; report review; map and status updates. |
