@@ -1,0 +1,9 @@
+stages:
+  reviewed_evaluation:
+    cmd: python tools/evaluate-reviewed-model.py --records data/reviewed-evaluation.jsonl --output data/evaluation-metrics.json
+    deps:
+      - tools/evaluate-reviewed-model.py
+      - data/reviewed-evaluation.jsonl
+    metrics:
+      - data/evaluation-metrics.json:
+          cache: false

@@ -1,0 +1,40 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {randomUUID} from 'node:crypto';
+import {Pool} from 'pg';
+import {ReportStore,createReportAPI} from '../tools/report-store.mjs';
+const facts={language:'mixed',category:'road_accident',title:'Synthetic rider incident',summaryEn:'One injured rider at the main gate.',summaryMs:'Seorang penunggang cedera.',activeIncident:'yes',injuryReported:'yes',injuredCount:1,immediateDanger:'unknown',locationText:'Jalan Ampang, Kuala Lumpur',accessPoint:'Main gate',hazard:'road_damage',unknownFields:[],nextQuestionEn:'Confirm the details?',nextQuestionMs:'Sahkan butiran?',evidenceSummary:'Synthetic test.',privacyUncertain:true,privacyRegions:[]};
+const location={text:facts.locationText,lat:3.1593,lng:101.7114,confirmed:true,accessPoint:'Main gate'};
+test('PostgreSQL report lifecycle: persistence, role boundaries, links, approval, replay, repair and idempotent credit',async t=>{
+ let config;try{config=JSON.parse(await readFile(resolve(process.env.LOCALAPPDATA,'FixMyCity/local-postgres.json'),'utf8'));}catch{t.skip('Local PostgreSQL configuration not available');return;}
+ const base=new Pool(config),schema='fmc_test_'+randomUUID().replaceAll('-','');await base.query('CREATE SCHEMA '+schema);
+ const pool=new Pool({...config,options:'-c search_path='+schema});const protect=async image=>({safeImage:image.replace('YQ==','Yw=='),diagnostics:{model:'test',facesBlurred:1,classification:[{label:'Pothole',score:.91}],embedding:[1,0]}});const store=new ReportStore(pool,protect);
+ t.after(async()=>{await pool.end();assert.match(schema,/^fmc_test_[a-f0-9]+$/);await base.query('DROP SCHEMA '+schema+' CASCADE');await base.end();});
+ await store.initialize(resolve('tools/report-schema.sql'));await store.seed();
+ const draftId=randomUUID(),draft={draftId,facts,transcript:'Synthetic one rider injured',location,photos:['data:image/jpeg;base64,YQ==']};const saved=await store.saveDraft(draft);assert.equal(saved.id,'FMC-043');assert.ok(saved.assessment.related.some(r=>r.id==='FMC-042'));assert.ok(!JSON.stringify(await store.get(saved.id)).includes('"score"'));assert.ok(JSON.stringify(await store.get(saved.id,true)).includes('"score"'));assert.equal((await store.get(saved.id)).photos[0],'data:image/jpeg;base64,Yw==');
+ const submissions=await Promise.all([store.submit({draftId,linkedHazard:'FMC-042'}),store.submit({draftId,linkedHazard:'FMC-042'})]);assert.equal(submissions[0].id,submissions[1].id);assert.equal((await store.get(saved.id)).events.length,1);
+ await assert.rejects(store.action(saved.id,'dispatch',{version:1}),/approval/);
+ await store.action(saved.id,'plan',{count:2,vehicle:'DEMO-01',entrance:'Main gate'});await store.action(saved.id,'approve',{version:2});
+ await store.action(saved.id,'plan',{count:2,vehicle:'DEMO-01',entrance:'East gate'});await assert.rejects(store.action(saved.id,'dispatch',{version:2}),/approval/);
+ await store.action(saved.id,'approve',{version:3});await Promise.all([store.action(saved.id,'dispatch',{version:3}),store.action(saved.id,'dispatch',{version:3})]);assert.equal((await store.get(saved.id)).events.filter(e=>e.event==='Test dispatch acknowledged').length,1);
+ const now=Date.now();await store.action(saved.id,'telemetry',{position:{lat:3.1593,lng:101.7114,at:now,sequence:1}});await assert.rejects(store.action(saved.id,'telemetry',{position:{lat:3.1593,lng:101.7114,at:now,sequence:1}}),/out of order/);await assert.rejects(store.action(saved.id,'telemetry',{position:{lat:3.1593,lng:101.7114,at:now-31000,sequence:2}}),/stale/);
+ await store.action(saved.id,'complete-response',{});assert.equal((await store.get(saved.id)).repair.state,'open');assert.equal((await store.get(saved.id)).tracking.position,null);
+ await assert.rejects(store.action(saved.id,'link-case',{target:'FMC-042',kind:'duplicate',reason:'Same hazard location and image.'}),/injuries/);
+ await store.action(saved.id,'link-case',{target:'FMC-042',kind:'related_hazard',reason:'Confirmed pothole at the same gate.'});const linked=await store.get(saved.id);await store.action(saved.id,'undo-link',{linkId:linked.links[0].id});assert.equal((await store.get(saved.id)).links[0].active,false);
+ await assert.rejects(store.action(saved.id,'review-repair',{confirmed:true}),/Authority completion/);
+ await store.action(saved.id,'complete-repair',{before:'data:image/jpeg;base64,YQ==',after:'data:image/jpeg;base64,Yg==',note:'Test crew completion record.',comparison:{comparison:'appears_repaired',sameScene:'likely',visibleChanges:'New asphalt.',limitations:[],nextStep:'Resident review.'}});
+ const credits=await Promise.all([store.action(saved.id,'review-repair',{confirmed:true}),store.action(saved.id,'review-repair',{confirmed:true})]);assert.equal(credits.filter(c=>c.credited).length,1);assert.equal((await store.leaderboard()).points,120);
+ const second=new ReportStore(pool,protect);assert.equal((await second.get(saved.id)).response_state,'response_complete');
+ const routine={...facts,category:'road_damage',hazard:null,injuryReported:'no',injuredCount:0,activeIncident:'no'};const group=[];
+ for(let i=0;i<2;i++){const key=randomUUID(),draft=await store.saveDraft({draftId:key,facts:routine,transcript:'Synthetic routine pothole',location,photos:[]});await store.submit({draftId:key});group.push(draft.id);}
+ await store.action(group[1],'link-case',{target:group[0],kind:'duplicate',reason:'Same lane and physical pothole, reviewed.'});assert.equal((await store.get(group[1])).repairTarget,group[0]);assert.equal((await store.get(group[1])).repair.report_id,group[0]);
+ await assert.rejects(store.action(group[0],'link-case',{target:group[1],kind:'duplicate',reason:'Would create a circular group.'}),/cycle/);
+ await assert.rejects(store.action(group[1],'link-case',{target:'FMC-042',kind:'duplicate',reason:'Already grouped elsewhere.'}),/Undo/);
+ const grouped=await store.get(group[1]);await store.action(group[1],'undo-link',{linkId:grouped.links.find(l=>l.source_id===group[1]&&l.active).id});assert.equal((await store.get(group[1])).repairTarget,group[1]);
+ await assert.rejects(store.action(group[1],'link-case',{target:'FMC-042',kind:'duplicate',reason:'Damage returned after a verified repair.'}),/recurrence/);
+ const adminKey='test-admin-key-not-real-credential-12345',api=createReportAPI(store,{adminKey}),origin='http://127.0.0.1:9189';const req=(path,body,headers={})=>new Request(origin+path,{method:body===undefined?'GET':'POST',headers:{Origin:origin,'Content-Type':'application/json',...headers},body:body===undefined?undefined:JSON.stringify(body)});
+ assert.equal((await api(req('/api/local-admin/'+saved.id))).status,401);assert.equal((await api(req('/api/local-reports/'+saved.id+'/plan',{count:2}))).status,403);assert.equal((await api(req('/api/local-admin/session',{}, {Origin:'https://evil.example'}))).status,403);
+ assert.equal((await api(req('/api/local-admin/session',{}))).status,401);const session=await api(req('/api/local-admin/session',{key:adminKey})),cookie=session.headers.get('set-cookie').split(';')[0];const admin=await api(req('/api/local-admin/'+saved.id,undefined,{Cookie:cookie}));assert.equal(admin.status,200);assert.ok(JSON.stringify(await admin.json()).includes('"score"'));assert.ok(!JSON.stringify(await(await api(req('/api/local-reports/'+saved.id))).json()).includes('"score"'));
+});

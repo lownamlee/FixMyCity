@@ -1,0 +1,43 @@
+/* Match the welcome and camera-permission preview casing. */
+html:has(.phone-casing-page){height:auto;min-height:100%;overflow-x:clip;overflow-y:auto;background:#d9e5f1}
+body.phone-casing-page{height:auto;min-height:100svh;margin:0;padding:32px 24px;display:grid;place-items:center;overflow-x:clip;background:radial-gradient(ellipse at 50% 22%,#f0f5fb 0,#dce6f1 48%,#bed0e4 100%)}
+.app-phone-case{position:relative;isolation:isolate;flex:none;width:390px;height:844px;border-radius:46px;background:#fff;box-shadow:0 0 0 7px #080c11,0 0 0 9px #a9adb0,0 0 0 11px #31373b,0 0 0 13px #dfe2e2,0 22px 45px 8px #22395040}
+.app-phone-case::before,.app-phone-case::after{content:"";position:absolute;z-index:-1;left:-16px;width:3px;border-radius:2px;background:linear-gradient(90deg,#65696c,#d3d6d9,#5c6165)}
+.app-phone-case::before{top:108px;height:29px;box-shadow:0 57px 0 #9ea5aa,0 105px 0 #9ea5aa}
+.app-phone-case::after{left:auto;right:-16px;top:198px;height:91px}
+.app-phone-viewport{position:relative;width:100%;height:100%;overflow:hidden;border-radius:inherit}
+.app-phone-canvas{position:absolute;top:0;left:0;width:390px;height:844px;transform-origin:top left;background:#fff}
+.app-phone-notch{position:absolute;z-index:20;top:-1px;left:50%;transform:translateX(-50%);height:31px;width:186px;border-radius:0 0 22px 22px;background:#020405;pointer-events:none}
+.app-phone-notch::before{content:"";position:absolute;left:70px;top:11px;width:43px;height:6px;border-radius:9px;background:#111619;box-shadow:inset 0 1px 2px #000}
+.app-phone-notch::after{content:"";position:absolute;left:126px;top:10px;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle at 65% 40%,#07558d,#061b2d 38%,#05090f 65%)}
+.app-phone-status{position:absolute;inset:0 0 auto;height:49px;z-index:19;display:flex;align-items:center;justify-content:space-between;padding:0 27px 0 37px;font-size:16px;font-weight:650;letter-spacing:.1px;line-height:1;pointer-events:none;color:#101a40;background:#fff}
+.app-phone-status-icons{display:flex;gap:5px;align-items:center}
+.app-phone-status-icons svg{width:auto;height:13px}
+.page-card .app-phone-canvas>.phone{width:100%;height:100%;min-height:0;aspect-ratio:auto;border-radius:0;box-shadow:none}
+.page-card.phone-casing-page>.preview-note{display:none}
+.app-phone-case-card .verification-checking{position:absolute;padding-top:60px}
+.page-face .screen>.verification-checking{position:absolute}
+.app-phone-case-intro #scene{width:100%;height:100%}
+.app-phone-case-intro #tagline{font-size:48px;letter-spacing:1.5px}
+.app-phone-case-intro .app-phone-status{background:none;color:#fff}
+.app-phone-case-intro .language-intro{top:58px;right:18px}
+.app-phone-case-privacy .policy-shell{position:absolute;inset:49px 0 0;width:100%;height:calc(100% - 49px);min-height:0;margin:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scroll-padding-top:82px;scroll-behavior:smooth;scrollbar-width:none;box-shadow:none}
+.app-phone-case-privacy .policy-shell::-webkit-scrollbar{display:none}
+.app-phone-case-privacy .policy-toolbar{height:64px;padding:0 24px;line-height:1.4}
+.app-phone-case-privacy main{padding:30px 24px}
+.app-phone-case-privacy h1{font-size:35px}
+.app-phone-case-privacy .policy-intro>p:last-child{font-size:15px}
+.app-phone-case-privacy .policy-contents>div{grid-template-columns:1fr;gap:9px}
+.app-phone-case-privacy .policy-summary,.app-phone-case-privacy .policy-contact{padding:18px}
+.app-phone-case-privacy section h2{font-size:21px;gap:9px}
+.app-phone-case-privacy .retention-list{padding:0 18px}
+.app-phone-case-privacy .policy-footer{font-size:11px}
+@media(max-width:520px){
+ body.phone-casing-page{padding:0;display:block;background:#fff}
+ .app-phone-case{border-radius:0;box-shadow:none}
+ .app-phone-case::before,.app-phone-case::after,.app-phone-notch,.app-phone-status{display:none}
+ .app-phone-case-privacy .policy-shell{inset:0;height:100%}
+ .app-phone-case-privacy .policy-toolbar{height:calc(64px + env(safe-area-inset-top));padding-top:env(safe-area-inset-top)}
+ .app-phone-case-intro .language-intro{top:max(20px,env(safe-area-inset-top));right:max(20px,env(safe-area-inset-right))}
+}
+@media(prefers-reduced-motion:reduce){.app-phone-case-privacy .policy-shell{scroll-behavior:auto}}

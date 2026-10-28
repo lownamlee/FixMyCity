@@ -1,0 +1,29 @@
+/* Real geographic map; the surrounding app chrome stays above Leaflet's panes. */
+.map-page .map-stage{z-index:1;isolation:isolate;bottom:var(--map-preview-height)}
+.map-live{position:absolute;inset:0;background:#edf0e9;font-family:inherit}
+.map-live .leaflet-control-attribution{font-size:9px;line-height:15px;white-space:nowrap;background:#fffffff0;padding:1px 5px;color:#354b60}
+.map-live .leaflet-control-attribution a{color:#285b7a}
+.map-live .leaflet-bottom{bottom:2px}
+.map-live .leaflet-marker-icon.fmc-map-marker{background:none;border:0;cursor:pointer;outline-offset:5px}
+.fmc-map-marker .map-report-pin{position:static;transform:none;width:40px;height:54px;transition:filter .15s,scale .15s;transform-origin:50% 90%}
+.fmc-map-marker .map-report-pin[aria-pressed="true"]{width:40px;height:54px;scale:1.16}
+.fmc-map-marker .map-report-pin[data-color="orange"]{color:#f79806}
+.fmc-map-marker .map-report-pin:active{transform:none}
+.map-venue-label{border:0;border-radius:7px;box-shadow:0 2px 8px #15365f22;padding:5px 8px;font:600 11px/1.35 Roboto,sans-serif;color:#153b66;background:#fffffff5;text-align:center}
+.map-venue-label small{font-size:9px;font-weight:500;color:#526d8c}
+.map-page .map-tools{z-index:4;bottom:calc(var(--map-preview-height) + 26px)}
+.map-page .map-layer-panel{z-index:8;bottom:calc(var(--map-preview-height) + 26px);max-width:225px}
+.map-layer-panel .map-location-status{font-size:11px;line-height:1.45;font-weight:400;color:#61738a;margin:12px 0 6px}
+.map-layer-panel a{display:block;color:#0064e7;font-size:11px;text-decoration:none;padding:10px 3px 2px}
+.map-layer-panel #map-request-location{color:#0064e7;font-size:12px}
+.map-network-note{position:absolute;z-index:800;top:50%;left:18px;right:18px;transform:translateY(-50%);padding:18px;border-radius:16px;background:#fffffff7;box-shadow:0 6px 24px #11355e1c;text-align:center;color:#244166;font-size:13px;line-height:1.5}
+.map-network-note strong,.map-network-note span{display:block;margin-bottom:8px}
+.map-network-note button{background:#0965f5;color:white;padding:10px 14px;border-radius:10px;margin:6px}
+.map-network-note a{display:block;color:#0965f5;margin-top:5px}
+.map-preview-notified .icon{fill:none;stroke:var(--blue)}
+@media(prefers-reduced-motion:reduce){.fmc-map-marker .map-report-pin{transition:none}}
+.rp-report .rp-flow-heading{justify-content:flex-end;height:36px}
+.report-geographic-map{isolation:isolate;font-family:inherit;background:#edf0e9}
+.report-geographic-map .leaflet-control-attribution{font-size:9px;line-height:14px;background:#fffffff0}
+.report-geographic-map .leaflet-control-attribution a{color:#285b7a}
+.report-geographic-map .leaflet-control-zoom a{font-family:Roboto,sans-serif!important}

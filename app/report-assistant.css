@@ -1,0 +1,10 @@
+.ai-report-panel{padding:18px;margin:14px 0;border:1px solid #cdddff;border-radius:20px;background:#f6faff;color:#102247;text-align:left}
+.ai-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}.ai-panel-heading h2{font-size:20px;margin:0}.ai-panel-heading span{background:#e3edff;color:#1460d9;padding:5px 8px;border-radius:8px;font-size:11px}
+.ai-report-panel p,.ai-report-panel li{font-size:14px;line-height:1.6;overflow-wrap:anywhere}.ai-report-panel h3{font-size:16px;margin:18px 0 6px}.ai-report-panel details{padding:12px;background:#fff;border-radius:12px;margin:10px 0}.ai-report-panel summary{font-size:14px;color:#075dd4;cursor:pointer}.ai-report-panel a{color:#075dd4}.ai-report-panel img{max-width:100%;border-radius:12px;margin-top:12px}.ai-report-panel .ai-urgent{background:#fff0ee;border-radius:12px;color:#a12627;padding:12px}.ai-next-question{font-weight:600}#ai-review-status:empty{display:none}
+.voice-draft-preview{margin:10px 20px 0;padding:10px 12px;border:1px solid #dce8fa;border-radius:14px;text-align:left;font-size:12px;display:grid;gap:4px;flex-shrink:0}.voice-draft-preview[hidden]{display:none}.voice-draft-preview small{color:#637a98;font-size:10px}.voice-draft-preview strong{color:#17345f}.voice-draft-preview a{color:#b62435}
+@media(max-height:740px){.voice-dialog:has(.voice-draft-preview:not([hidden])) .voice-orb{width:110px;height:110px}.voice-dialog:has(.voice-draft-preview:not([hidden])) .voice-transcript{max-height:85px}}
+
+.local-report-links{padding:8px 5px;font-size:11px;text-align:center;color:#7587a1}.local-report-links a{color:#386eb8;text-decoration:none}
+
+
+.local-case-summary{font-size:14px;line-height:1.5;padding:0 12px 15px;color:#677b9a}.local-case-link{display:flex;align-items:center;gap:5px;text-decoration:none;color:#086bf1;font-size:13px}.local-case-row{text-decoration:none;color:inherit}.local-case-symbol{display:grid;place-items:center;border-radius:12px;background:#eaf3ff;color:#0876ee;width:50px;height:60px}.local-case-symbol .icon{width:30px;height:30px}

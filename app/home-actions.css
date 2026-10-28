@@ -1,0 +1,45 @@
+/* Original SVG artwork: shaded faces, offset edges and small, quiet motion. */
+.home-action-defs{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+.shortcuts.home-actions{gap:9px;margin-top:14px}
+.home-actions .home-action{--action-tint:#eef7ff;--action-shadow:#bdd8f1;position:relative;isolation:isolate;height:86px;gap:4px;padding:7px 2px 8px;border:1.5px solid #fff;border-radius:16px;background:linear-gradient(145deg,#fff 3%,var(--action-tint) 100%);box-shadow:inset 0 1px 1px #fff,0 3px 0 color-mix(in srgb,var(--action-shadow) 35%,#fff),0 6px 12px #244a7910;transition:transform .18s ease,box-shadow .18s ease;color:#0a1533;font-size:11.5px;font-weight:500;letter-spacing:-.3px;overflow:visible}
+.home-actions .home-action--alerts{--action-tint:#effaf4;--action-shadow:#bbddca}
+.home-actions .home-action--leaderboard{--action-tint:#fff9e9;--action-shadow:#ead4a2}
+.home-actions .home-action--certificates{--action-tint:#f4f0ff;--action-shadow:#d4c6f1}
+.home-action-icon{display:block;width:43px;height:43px;flex:none;overflow:visible;filter:drop-shadow(0 2px 1px #25426c0a)}
+.home-actions .home-action>span{line-height:1.25;white-space:nowrap}
+.home-actions .home-action:focus-visible,.home-rewards:focus-visible{outline:3px solid #087aff;outline-offset:4px}
+.home-actions .home-action:active{transform:translateY(2px) scale(.97);box-shadow:inset 0 1px 2px #244a790c,0 1px 0 var(--action-shadow),0 2px 5px #244a790e}
+@media(hover:hover){.home-actions .home-action:hover{transform:translateY(-2px);background:linear-gradient(145deg,#fff,var(--action-tint));box-shadow:inset 0 1px 1px #fff,0 3px 0 color-mix(in srgb,var(--action-shadow) 50%,#fff),0 9px 15px #244a7918}}
+.ha-document,.ha-pin,.ha-trophy,.ha-stamp,.ha-medal{transform-box:view-box;transform-origin:24px 38px}
+.ha-document{animation:ha-paper-lift 6.8s ease-in-out infinite}
+.ha-report-lines{stroke-dasharray:1;animation:ha-ink-write 6.8s ease-in-out infinite}
+.ha-pin{animation:ha-pin-hop 6.8s ease-in-out .45s infinite}
+.ha-radar{transform-box:view-box;transform-origin:24px 23px;animation:ha-radar-pulse 6.8s ease-out .45s infinite}
+.ha-trophy{animation:ha-trophy-rock 6.8s ease-in-out .9s infinite}
+.ha-trophy-spark{transform-box:fill-box;transform-origin:center;animation:ha-star-glint 6.8s ease-in-out .9s infinite}
+.ha-stamp{transform-origin:34px 32px;animation:ha-stamp-pop 6.8s ease-in-out 1.35s infinite}
+.ha-stamp-check{stroke-dasharray:1;animation:ha-check-draw 6.8s ease-in-out 1.35s infinite}
+@keyframes ha-paper-lift{0%,25%,100%{transform:translateY(0) rotate(0)}8%{transform:translateY(-2px) rotate(-4deg)}16%{transform:translateY(0) rotate(2deg)}}
+@keyframes ha-ink-write{0%,3%{stroke-dashoffset:1}20%,100%{stroke-dashoffset:0}}
+@keyframes ha-pin-hop{0%,25%,100%{transform:translateY(0)}9%{transform:translateY(-3px)}17%{transform:translateY(1px)}}
+@keyframes ha-radar-pulse{0%,27%,100%{opacity:.3;transform:scale(.93)}12%{opacity:1;transform:scale(1.06)}}
+@keyframes ha-trophy-rock{0%,26%,100%{transform:rotate(0)}7%{transform:rotate(-7deg) translateY(-1px)}15%{transform:rotate(5deg) translateY(-2px)}21%{transform:rotate(-2deg)}}
+@keyframes ha-star-glint{0%,28%,100%{opacity:0;transform:scale(.6)}13%,18%{opacity:1;transform:scale(1)}}
+@keyframes ha-stamp-pop{0%,27%,100%{transform:scale(1)}7%{transform:scale(.87)}15%{transform:scale(1.1)}21%{transform:scale(.98)}}
+@keyframes ha-check-draw{0%,6%{stroke-dashoffset:1}20%,100%{stroke-dashoffset:0}}
+.rewards.home-rewards{position:relative;display:grid;grid-template-columns:minmax(0,1.12fr) 1px minmax(0,1fr) 12px;gap:9px;width:100%;height:64px;padding:8px 12px;margin-top:14px;border:1.5px solid #fff;border-radius:17px;background:linear-gradient(115deg,#fff8df 0%,#fffdf2 46%,#fff4d4 100%);box-shadow:inset 0 2px 1px #fff,inset 0 -2px 2px #efcf7a24,0 3px 0 #eadcaf,0 7px 14px #82672c12;isolation:isolate;--ink-color:#f9c43625}
+.home-rewards::before{content:"";position:absolute;inset:1px;border:1px solid #fff9e9;border-radius:14px;pointer-events:none}
+.home-reward-stat{display:flex;align-items:center;gap:7px;min-width:0}
+.home-reward-medal{width:34px;height:43px;flex:none;overflow:visible;filter:drop-shadow(0 2px 2px #c4840020)}
+.ha-medal{transform-origin:24px 8px;animation:ha-medal-sway 8s ease-in-out 2s infinite}
+.home-reward-copy{display:flex;flex-direction:column;gap:3px;min-width:0;white-space:nowrap}
+.home-reward-copy>strong{font-size:18px;font-weight:750;line-height:1.1;letter-spacing:-.5px;color:#091637}
+.home-reward-copy small{font-size:13px;font-weight:650;letter-spacing:-.3px}
+.home-reward-copy>span{font-size:9px;line-height:1.2;color:#60708a;letter-spacing:-.1px}
+.home-reward-divider{width:1px;height:29px;background:linear-gradient(transparent,#dece9c,transparent)}
+.home-reward-shield{width:31px;height:36px;flex:none;filter:drop-shadow(0 1px 1px #13773d12)}
+.home-reward-arrow{width:12px;height:20px;color:#687c99;justify-self:end}
+.home-rewards[data-fmc-pressed]{box-shadow:inset 0 1px 3px #b58c1420,0 1px 0 #e5d49f,0 3px 6px #82672c12}
+@keyframes ha-medal-sway{0%,23%,100%{transform:rotate(0)}5%{transform:rotate(6deg)}12%{transform:rotate(-5deg)}18%{transform:rotate(2deg)}}
+@media(max-width:350px){.shortcuts.home-actions{gap:6px}.home-actions .home-action{font-size:10.5px;height:82px;border-radius:13px}.home-action-icon{width:39px;height:39px}.rewards.home-rewards{gap:6px;padding-inline:9px}.home-reward-stat{gap:5px}.home-reward-medal{width:29px}.home-reward-shield{width:27px}.home-reward-copy>strong{font-size:16px}.home-reward-copy small{font-size:11px}.home-reward-copy>span{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.home-actions *,.home-rewards *{animation:none!important}.home-actions .home-action{transition:none}.home-actions .home-action:hover,.home-actions .home-action:active{transform:none}.ha-report-lines,.ha-stamp-check{stroke-dashoffset:0}.ha-trophy-spark{opacity:.8}}

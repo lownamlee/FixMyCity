@@ -1,0 +1,22 @@
+{
+  "name": "fixmycity",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.worker.json --noEmit && tsc -p tsconfig.tools.json",
+    "build": "npm run typecheck && tsc -p tsconfig.json && tsc -p tsconfig.worker.json && tsx deploy/prepare.ts",
+    "test": "npm run build && tsx --test tests/*.test.ts deploy/worker.test.ts",
+    "dev": "npm run build && tsx tools/serve.ts",
+    "deploy": "npm test && wrangler deploy --config deploy/wrangler.jsonc",
+    "format": "prettier --write \"src/**/*.ts\" \"tools/**/*.ts\" \"tests/**/*.ts\" \"deploy/*.ts\" \"tsconfig*.json\""
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "maplibre-gl": "6.12.0",
+    "prettier": "^3.9.10",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.153.0"
+  }
+}

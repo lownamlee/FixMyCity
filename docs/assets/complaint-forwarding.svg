@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="792pt" height="324pt" viewBox="0 0 792 324" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>FixMyCity chart generator</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 324 
+L 792 324 
+L 792 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 55.44 202.058182 
+L 520.574146 202.058182 
+L 520.574146 160.821818 
+L 55.44 160.821818 
+z
+" clip-path="url(#p72c47087bb)" style="fill: #0969da"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 520.574146 202.058182 
+L 736.56 202.058182 
+L 736.56 160.821818 
+L 520.574146 160.821818 
+z
+" clip-path="url(#p72c47087bb)" style="fill: #dfe9f7"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="288.007073" y="186.635312" transform="rotate(-0 288.007073 186.635312)">68.3%</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #102849" x="628.567073" y="186.635312" transform="rotate(-0 628.567073 186.635312)">31.7%</text>
+   </g>
+  </g>
+  <g id="text_3">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #102849" x="55.44" y="41.876719" transform="rotate(-0 55.44 41.876719)">Complaint routing crosses agency boundaries</text>
+  </g>
+  <g id="text_4">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #53657c" x="55.44" y="63.438281" transform="rotate(-0 55.44 63.438281)">MYJalan complaints · August 2023–September 2026</text>
+  </g>
+  <g id="text_5">
+   <text style="font-weight: 700; font-size: 36px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #102849" x="55.44" y="129.6" transform="rotate(-0 55.44 129.6)">72,071</text>
+  </g>
+  <g id="text_6">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #53657c" x="237.6" y="123.12" transform="rotate(-0 237.6 123.12)">complaints in the reported total</text>
+  </g>
+  <g id="text_7">
+   <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0969da" x="55.44" y="236.52" transform="rotate(-0 55.44 236.52)">49,217 forwarded outside KKR</text>
+  </g>
+  <g id="text_8">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #53657c" x="506.88" y="236.52" transform="rotate(-0 506.88 236.52)">22,854 remaining complaints</text>
+  </g>
+  <g id="text_9">
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #53657c" x="55.44" y="291.6" transform="rotate(-0 55.44 291.6)">Remaining complaints = total complaints − complaints forwarded outside KKR.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p72c47087bb">
+   <rect x="55.44" y="158.76" width="681.12" height="45.36"/>
+  </clipPath>
+ </defs>
+</svg>

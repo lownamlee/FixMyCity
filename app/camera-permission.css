@@ -1,0 +1,70 @@
+.camera-blocked .camera-app-content{display:none!important}
+.camera-permission{width:min(390px,100%);min-height:min(844px,100dvh);margin:auto;display:flex;flex-direction:column;position:relative;background:#f9fbff;border-radius:30px;padding:32px 26px;color:#101a40;font-family:inherit;box-shadow:0 14px 50px #18345918}
+.camera-permission[hidden]{display:none!important}
+.camera-permission-back{width:44px;height:44px;padding:0;border:0;border-radius:0;background:transparent;color:#0064ff;display:grid;place-items:center;margin:0 0 62px -14px;cursor:pointer}
+.camera-permission-back svg,.guide-back svg,.face-back svg{display:block;width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.camera-permission-back:hover,.guide-back:hover,.face-back:hover{opacity:.72}
+.camera-permission-back:focus-visible,.guide-back:focus-visible,.face-back:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+.camera-permission-icon{width:104px;height:104px;display:grid;place-items:center;margin:0 auto 28px;border-radius:50%;background:#e4efff;color:#1268ff}
+.camera-permission-icon svg{width:52px;height:52px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+/* useAnimations Camera, MIT: https://useanimations.com/icons/camera
+   Native SVG/CSS rendition of its published 30 fps keyframes, with a quiet repeat interval. */
+.camera-icon-body{transform-box:view-box;transform-origin:16px 25px;animation:camera-body-snap 3s ease-in-out infinite}
+.camera-icon-lens{transform-box:view-box;transform-origin:16px 17px;animation:camera-lens-snap 3s ease-in-out infinite}
+@keyframes camera-body-snap{0%{transform:scale(1);animation-timing-function:cubic-bezier(0,0,.58,1)}4.444%{transform:scale(1.04,.95)}11.111%{transform:scale(.99,1.01)}17.778%,100%{transform:scale(1)}}
+@keyframes camera-lens-snap{0%{transform:scale(1);animation-timing-function:cubic-bezier(.42,0,1,1)}4.444%{transform:scale(.7);animation-timing-function:cubic-bezier(0,0,.58,1)}11.111%{transform:scale(1.12)}17.778%{transform:scale(.97)}24.444%,100%{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.camera-icon-body,.camera-icon-lens{animation:none}}
+.camera-permission h1{text-align:center;font-size:29px;line-height:1.2;letter-spacing:-.7px;font-weight:700;margin:0 0 18px;outline:none}
+.camera-permission>p{text-align:center;font-size:16px;line-height:1.55;color:#60718e;margin:0 0 25px}
+.camera-settings-help{padding:17px 19px;background:#edf3fc;border-radius:17px;margin:0 0 25px;font-size:14px;line-height:1.55;color:#405675}
+.camera-settings-help strong{display:block;color:#152c50;margin-bottom:7px}
+.camera-settings-help ol{padding-left:18px;margin:0;display:grid;gap:8px}
+.camera-permission-action{margin-top:auto}
+.camera-permission-action small{display:block;text-align:center;color:#7585a0;font-size:11px;line-height:1.5;margin:15px 4px 0}
+.page-card .live-card-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#141f30}
+.page-card .camera-scene .scene{display:none!important}
+.page-card .review-side img{display:block;width:100%;aspect-ratio:1.55;object-fit:cover;border-radius:7px;background:#e7edf5}
+.page-face .live-face-video{display:block;width:100%;height:100%;object-fit:cover;transform:scaleX(-1);background:#dce4ef}
+@media(max-width:520px){
+ body.camera-blocked{display:block!important;padding:0!important;background:#f9fbff!important;min-height:100dvh}
+ .camera-permission{width:100%;min-height:100dvh;border-radius:0;box-shadow:none;padding:calc(22px + env(safe-area-inset-top)) 26px calc(26px + env(safe-area-inset-bottom))}
+ .camera-permission-back{margin-bottom:55px}
+}
+@media(max-height:700px){.camera-permission-back{margin-bottom:24px}.camera-permission-icon{width:78px;height:78px;margin-bottom:20px}.camera-permission{min-height:100dvh}}
+
+/* The camera gate uses the same frame and 390 × 844 canvas as onboarding. */
+body.camera-blocked{display:grid;place-items:center;min-height:100svh;padding:32px 24px;background:radial-gradient(ellipse at 50% 22%,#f0f5fb 0,#dce6f1 48%,#bed0e4 100%)}
+.camera-blocked>.preview-note{display:none}
+body:not(.camera-blocked) .permission-device{display:none}
+.permission-device{position:relative;isolation:isolate;flex:none;width:390px;height:844px;border-radius:46px;background:#f9fbff;box-shadow:0 0 0 7px #080c11,0 0 0 9px #a9adb0,0 0 0 11px #31373b,0 0 0 13px #dfe2e2,0 22px 45px 8px #22395040}
+.permission-device::before,.permission-device::after{content:"";position:absolute;z-index:-1;left:-16px;width:3px;border-radius:2px;background:linear-gradient(90deg,#65696c,#d3d6d9,#5c6165)}
+.permission-device::before{top:108px;height:29px;box-shadow:0 57px 0 #9ea5aa,0 105px 0 #9ea5aa}
+.permission-device::after{left:auto;right:-16px;top:198px;height:91px}
+.permission-viewport{position:relative;width:100%;height:100%;overflow:hidden;border-radius:inherit}
+.permission-canvas{position:absolute;top:0;left:0;width:390px;height:844px;transform-origin:top left;background:#f9fbff}
+.permission-device .camera-permission{width:100%;height:100%;min-height:0;margin:0;border-radius:0;box-shadow:none;padding:58px 26px 70px;overflow-y:auto;scrollbar-width:none}
+.permission-device .camera-permission::-webkit-scrollbar{display:none}
+.permission-device .camera-permission-back{flex:none;margin:0 0 62px -14px}
+.permission-device .camera-permission-icon{flex:none;width:104px;height:104px;margin-bottom:28px}
+.permission-device .camera-permission-action{flex:none;padding-top:12px}
+.permission-device .language-camera{right:18px;top:58px}
+.permission-status{height:49px;position:absolute;top:0;left:0;right:0;z-index:15;display:flex;align-items:center;justify-content:space-between;padding:0 27px 0 37px;pointer-events:none;color:#101a40}
+.permission-time{font-size:16px;font-weight:650;letter-spacing:.1px;padding-top:1px}
+.permission-status-icons{display:flex;gap:5px;align-items:center}
+.permission-status-icons svg{height:13px;width:auto}
+.permission-notch{position:absolute;z-index:16;top:-1px;left:50%;transform:translateX(-50%);height:31px;width:186px;border-radius:0 0 22px 22px;background:#020405;pointer-events:none}
+.permission-notch::before{content:"";position:absolute;left:70px;top:11px;width:43px;height:6px;border-radius:9px;background:#111619;box-shadow:inset 0 1px 2px #000}
+.permission-notch::after{content:"";position:absolute;left:126px;top:10px;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle at 65% 40%,#07558d,#061b2d 38%,#05090f 65%)}
+.permission-device .camera-permission:has(.camera-settings-help:not([hidden])) .camera-permission-back{margin-bottom:24px}
+.permission-device .camera-permission:has(.camera-settings-help:not([hidden])) .camera-permission-icon{width:78px;height:78px;margin-bottom:20px}
+@media(max-width:520px){
+ .permission-device{border-radius:0;box-shadow:none}
+ .permission-device::before,.permission-device::after,.permission-notch,.permission-status{display:none}
+ .permission-device .camera-permission{padding:calc(22px + env(safe-area-inset-top)) 26px calc(26px + env(safe-area-inset-bottom))}
+ .permission-device .camera-permission-back{margin-bottom:55px}
+ .permission-device .language-camera{top:calc(22px + env(safe-area-inset-top))}
+}
+@media(max-width:520px) and (max-height:700px){
+ .permission-device .camera-permission-back{margin-bottom:24px}
+ .permission-device .camera-permission-icon{width:78px;height:78px;margin-bottom:20px}
+}

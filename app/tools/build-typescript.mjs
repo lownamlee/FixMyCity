@@ -1,0 +1,14 @@
+import {build} from 'esbuild';
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('../',import.meta.url));
+const check=spawnSync(process.execPath,['node_modules/typescript/bin/tsc','--noEmit'],{cwd:root,stdio:'inherit'});
+if(check.status!==0)process.exit(check.status||1);
+await build({absWorkingDir:root,entryPoints:['src/pages/registry.ts'],outfile:'.build/page-templates.mjs',bundle:true,format:'esm',platform:'neutral',target:['es2022']});
+await build({absWorkingDir:root,entryPoints:['src/ai/engine.ts'],outfile:'deploy/report-engine.js',bundle:true,format:'esm',platform:'neutral',target:['es2022']});
+await build({absWorkingDir:root,entryPoints:['src/lib/face-actions.ts'],outfile:'deploy/face-actions.js',bundle:true,format:'esm',platform:'neutral',target:['es2022']});
+await build({absWorkingDir:root,entryPoints:['src/face-landmarker-worker.ts'],outfile:'face-landmarker-worker.js',bundle:true,format:'iife',platform:'browser',target:['es2020']});
+await build({absWorkingDir:root,entryPoints:['src/photo-privacy-worker.ts'],outfile:'photo-privacy-worker.js',bundle:true,format:'iife',platform:'browser',target:['es2020']});
+await build({absWorkingDir:root,entryPoints:['src/server/report-store.ts'],outfile:'tools/report-store.mjs',bundle:true,format:'esm',platform:'node',packages:'external',target:['es2022']});
+await build({absWorkingDir:root,entryPoints:['src/server/report-store.ts'],outfile:'deploy/report-store.js',bundle:true,format:'esm',platform:'node',packages:'external',target:['es2022']});
+await build({absWorkingDir:root,entryPoints:{'app-language':'src/app-language.ts','press-feedback':'src/press-feedback.ts','verification-face':'src/verification-face.ts','verification-card':'src/verification-card.ts','verification-api':'src/verification-api.ts','privacy':'src/privacy.ts','voice-assistant':'src/voice-assistant.ts','report-assistant':'src/report-assistant.ts','ai-lab':'src/ai-lab.ts','cases':'src/cases.ts','authority':'src/authority.ts'},outdir:'.',bundle:true,format:'iife',platform:'browser',target:['es2020'],banner:{js:'// Generated from src/*.ts. Edit TypeScript sources and run npm run build.'}});

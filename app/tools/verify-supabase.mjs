@@ -1,0 +1,10 @@
+import {Pool} from 'pg';import {readFile} from 'node:fs/promises';import {join} from 'node:path';
+import {handleReportData,reportPreferences} from '../deploy/report-data.js';
+const dir=join(process.env.LOCALAPPDATA,'FixMyCity');
+const source=new Pool(JSON.parse(await readFile(join(dir,'local-postgres.json'),'utf8'))),target=new Pool(JSON.parse(await readFile(join(dir,'supabase-postgres.json'),'utf8')));
+const saved=JSON.parse(await readFile(join(dir,'backups/supabase-1793178597735/snapshot.json'),'utf8'));
+try{const a=await source.connect(),b=await target.connect();try{await b.query('BEGIN');await b.query('SET LOCAL extra_float_digits=1');for(const [table,{columns}]of Object.entries(saved.tables)){const sql=`SELECT count(*)::int count,md5(coalesce(string_agg(to_jsonb(t)::text,'' ORDER BY to_jsonb(t)::text),'')) digest FROM (SELECT ${columns.map(c=>'"'+c+'"').join(',')} FROM ${table}) t`;const x=(await a.query(sql)).rows[0],y=(await b.query(sql)).rows[0];if(JSON.stringify(x)!==JSON.stringify(y))throw Error('Data drift: '+table);console.log(JSON.stringify({table,count:x.count,matched:true}));}await b.query('ROLLBACK');}finally{a.release();b.release();}
+const config=await readFile(join(dir,'supabase-backend.json'),'utf8');const env={FMC_DATABASE_JSON:config,IDENTITY_SESSION_SECRET:'verification-only-ephemeral-secret-123456',REPORT_RATE_LIMIT:{limit:async()=>({success:true})}};
+for(const path of ['status','','leaderboard']){const r=await handleReportData(new Request('https://fixmycity.online/api/reports'+(path?'/'+path:''),{headers:{'CF-Connecting-IP':'192.0.2.1'}}),env);if(r.status!==200)throw Error('Cloud API failure '+path);console.log('Supabase backend role API '+(path||'list')+': 200');}
+const prefs=await reportPreferences(env);console.log(JSON.stringify({agentConfigVersion:prefs.version,approvedKnowledge:prefs.knowledge.length}));
+}catch{console.error('Supabase verification failed; no credentials were logged.');process.exitCode=1;}finally{await source.end();await target.end();}

@@ -1,0 +1,14 @@
+{
+  "name": "fixmycity-project",
+  "private": true,
+  "scripts": {
+    "setup": "npm ci --prefix app && npm ci --prefix website",
+    "build": "npm run build --prefix app && npm run build --prefix website",
+    "test": "npm run build --prefix app && npm test --prefix app && npm test --prefix website",
+    "dev:app": "npm run dev --prefix app",
+    "dev:website": "npm run dev --prefix website"
+  },
+  "dependencies": {
+    "@elevenlabs/client": "^1.32.0"
+  }
+}

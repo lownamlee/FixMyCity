@@ -1,0 +1,18 @@
+/* Secondary pages use one back-and-title row. Primary bottom-bar pages retain their headers. */
+.sub-page[data-compact-header]{--sub-header-height:124px}
+.sub-page[data-compact-header="location"]{--sub-header-height:158px}
+.sub-page[data-compact-header="step"]{--sub-header-height:142px}
+.fmc-subpage-header .sub-topbar{margin:0 14px;min-height:56px;gap:8px}
+.fmc-subpage-header .sub-back{width:38px;height:44px}
+.fmc-subpage-header .sub-title.inline{margin:0;min-width:0;font-size:24px;line-height:30px;font-weight:650;text-align:left;letter-spacing:-.6px}
+.fmc-subpage-header .sub-subtitle{margin:0 0 0 60px;text-align:left;line-height:18px}
+.fmc-subpage-header .location-row{padding-left:60px;margin:0;height:34px}
+.fmc-subpage-header .sub-actions{margin-left:auto;flex:none}
+.sub-page[data-compact-header] .ac-settings-body{margin-top:0}
+.sub-page[data-compact-header] .ac-auth-card{min-height:calc(100% - var(--sub-header-height) + 20px)}
+@media(max-width:520px){
+  .sub-page[data-compact-header]{--sub-header-height:calc(78px + max(18px,env(safe-area-inset-top)))}
+  .sub-page[data-compact-header="location"]{--sub-header-height:calc(112px + max(18px,env(safe-area-inset-top)))}
+  .sub-page[data-compact-header="step"]{--sub-header-height:calc(96px + max(18px,env(safe-area-inset-top)))}
+  .fmc-subpage-header .sub-topbar{margin-top:0}
+}

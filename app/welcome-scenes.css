@@ -1,0 +1,76 @@
+/* Artwork is layered independently; all positions follow the original scene crops. */
+.scene{container-type:inline-size;--story-duration:5s}
+.scene>svg,.report-phone-layer{position:absolute;inset:0;width:100%;height:100%}
+.city-art{animation:city-float 6s ease-in-out infinite}
+.city-spark{position:absolute;width:1.1%;aspect-ratio:1;border-radius:50%;background:#a6ddff;box-shadow:0 0 9px #66c3ff;animation:city-twinkle 4.8s ease-in-out infinite}
+.spark-one{left:35%;top:31%;animation-delay:-.6s}
+.spark-two{left:49%;top:26%;animation-delay:-2.2s}
+.spark-three{left:72%;top:24%;animation-delay:-3.5s}
+.report-phone-layer{animation:phone-float 4.6s ease-in-out infinite;transform-origin:40% 60%}
+.report-photo{animation:report-photo-reveal 8s ease-in-out infinite}
+.welcome-report-title{position:absolute;left:22.5%;top:43.1%;width:28%;color:#092650;font-size:3cqw;font-weight:650;line-height:1.2;transform:rotate(-5deg);transform-origin:left center;white-space:nowrap}
+.report-wave{position:absolute;left:24.5%;top:60.5%;width:24%;height:6.5%;display:flex;align-items:center;justify-content:space-between;transform:rotate(-5deg)}
+.report-wave i{display:block;height:var(--h);width:2.1%;background:#087aff;border-radius:2px;animation:wave-talk .85s ease-in-out infinite alternate;animation-delay:calc(var(--i)*-71ms)}
+.report-route{animation:route-flow 1.8s linear infinite}
+.report-arrowhead{animation:arrow-breathe 2.4s ease-in-out infinite}
+.authority-label{position:absolute;left:58%;top:66.3%;width:26%;height:8.8%;display:flex;align-items:center;justify-content:center;padding-right:2.2cqw;border-radius:4cqw;background:linear-gradient(#e6f4ff,#c6e4ff);color:#0c2a57;font-size:2.8cqw;font-weight:650;box-shadow:0 .4cqw 1.5cqw #00245740;animation:authority-reveal 8s ease-in-out infinite}
+.scene-check{display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#238dff,#0076ff);box-shadow:0 .4cqw 1cqw #001c4b35;flex:none;color:#fff}
+.scene .scene-check svg{position:static;width:100%;height:100%;overflow:visible;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.authority-check{position:absolute;left:77.5%;top:60.9%;width:10.7%;aspect-ratio:1;border:.7cqw solid white;animation:authority-reveal 8s ease-in-out infinite}
+.progress-steps{position:absolute;left:24.38%;top:17.25%;width:24.2%;height:55.5%;padding:0;margin:0;list-style:none;display:flex;flex-direction:column;justify-content:space-between}
+.progress-steps::before,.progress-steps::after{content:"";position:absolute;left:2.75cqw;top:3.1cqw;bottom:3.1cqw;width:.7cqw;border-radius:1cqw;background:#9ecbff30}
+.progress-steps::after{background:#e8f5ff;transform-origin:top;animation:progress-line var(--story-duration) ease-in-out infinite}
+.progress-step{position:relative;z-index:1;display:flex;align-items:center;gap:2.05cqw;min-height:6.2cqw;transform-origin:3.1cqw center;animation-duration:var(--story-duration);animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+.progress-step .scene-check{width:6.2cqw;height:6.2cqw}
+.step-label{font-size:2.83cqw;line-height:1.2;font-weight:500;letter-spacing:-.06cqw;color:#f8fbff;white-space:nowrap}
+.step-verified .scene-check{background:linear-gradient(140deg,#ffdd1a,#ffc400)}
+.step-verified .step-label{font-weight:650}
+.step-reported{animation-name:step-reported}
+.step-assigned{animation-name:step-assigned}
+.step-repaired{animation-name:step-repaired}
+.step-verified{animation-name:step-verified}
+.progress-step path{stroke-dasharray:1;stroke-dashoffset:0;animation-duration:var(--story-duration);animation-timing-function:ease;animation-iteration-count:infinite}
+.step-reported path{animation-name:tick-reported}
+.step-assigned path{animation-name:tick-assigned}
+.step-repaired path{animation-name:tick-repaired}
+.step-verified path{animation-name:tick-verified}
+.repaired-picture{position:absolute;left:48.96%;top:17.25%;width:26.1%;height:45.72%;border:.22cqw solid #b9dcff;border-radius:2.4cqw;overflow:hidden;background:#b6dcff;box-shadow:0 1cqw 2cqw #00235340;animation:picture-reveal var(--story-duration) ease-in-out infinite}
+.repaired-picture img{display:block;width:100%;height:100%;object-fit:cover;animation:picture-float 5.2s ease-in-out infinite}
+.recognition-reveal{position:absolute;left:60.4%;top:45.2%;width:18.7%;height:35.1%;animation:medal-reveal var(--story-duration) cubic-bezier(.22,.75,.3,1) infinite;transform-origin:center 70%}
+.recognition-float{position:relative;width:100%;height:100%;animation:medal-float 3s ease-in-out infinite}
+.scene .recognition-art{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 1cqw 1.2cqw #00265d40)}
+.scene .medal-rays{position:absolute;left:-14%;top:-3%;width:128%;height:100%;animation:medal-rays 2.2s ease-in-out infinite}
+.medal-check{position:absolute;right:-1%;top:46%;width:40%;aspect-ratio:1;animation:medal-check var(--story-duration) ease-in-out infinite}
+html[lang="ms"] .step-label{font-size:2.5cqw;letter-spacing:-.09cqw}
+html[lang="ms"] .authority-label{font-size:2.35cqw}
+html[lang="ms"] .welcome-report-title{font-size:2.65cqw}
+@keyframes city-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5%)}}
+@keyframes city-twinkle{0%,20%,100%{opacity:0;transform:scale(.3)}45%,65%{opacity:.8;transform:scale(1)}}
+@keyframes phone-float{0%,100%{transform:translateY(0) rotate(-.4deg)}50%{transform:translateY(-1.4%) rotate(.4deg)}}
+@keyframes report-photo-reveal{0%,7%,95%,100%{opacity:0}15%,85%{opacity:1}}
+@keyframes wave-talk{from{transform:scaleY(.3);opacity:.65}to{transform:scaleY(1);opacity:1}}
+@keyframes route-flow{to{stroke-dashoffset:-102}}
+@keyframes arrow-breathe{0%,100%{opacity:.6}50%{opacity:1}}
+@keyframes authority-reveal{0%,30%,95%,100%{opacity:0;transform:translateY(1cqw) scale(.88)}42%,84%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes step-reported{0%,3%,95%,100%{opacity:0;transform:translateY(1cqw) scale(.92)}10%,87%{opacity:1;transform:none}}
+@keyframes step-assigned{0%,17%,95%,100%{opacity:0;transform:translateY(1cqw) scale(.92)}24%,87%{opacity:1;transform:none}}
+@keyframes step-repaired{0%,31%,95%,100%{opacity:0;transform:translateY(1cqw) scale(.92)}38%,87%{opacity:1;transform:none}}
+@keyframes step-verified{0%,45%,95%,100%{opacity:0;transform:translateY(1cqw) scale(.92)}52%,87%{opacity:1;transform:none}}
+@keyframes tick-reported{0%,9%,95%,100%{stroke-dashoffset:1}14%,87%{stroke-dashoffset:0}}
+@keyframes tick-assigned{0%,23%,95%,100%{stroke-dashoffset:1}28%,87%{stroke-dashoffset:0}}
+@keyframes tick-repaired{0%,37%,95%,100%{stroke-dashoffset:1}42%,87%{stroke-dashoffset:0}}
+@keyframes tick-verified{0%,51%,95%,100%{stroke-dashoffset:1}56%,87%{stroke-dashoffset:0}}
+@keyframes progress-line{0%,12%{transform:scaleY(0);opacity:1}24%,26%{transform:scaleY(.333)}38%,40%{transform:scaleY(.666)}52%,87%{transform:scaleY(1);opacity:1}95%,100%{transform:scaleY(1);opacity:0}}
+@keyframes picture-reveal{0%,29%,95%,100%{opacity:0;transform:translateY(1.5cqw) scale(.94)}40%,87%{opacity:1;transform:none}}
+@keyframes picture-float{0%,100%{transform:scale(1.035) translateY(.5%)}50%{transform:scale(1.035) translateY(-.5%)}}
+@keyframes medal-reveal{0%,55%,95%,100%{opacity:0;transform:translateY(2.2cqw) scale(.68) rotate(-12deg)}64%,87%{opacity:1;transform:none}}
+@keyframes medal-float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-1cqw) rotate(2deg)}}
+@keyframes medal-rays{0%,100%{opacity:.45;transform:scale(.92)}50%{opacity:1;transform:scale(1.04)}}
+@keyframes medal-check{0%,63%,95%,100%{opacity:0;transform:scale(.5)}70%,87%{opacity:1;transform:scale(1)}}
+/* Restart each story when revisiting its slide; never animate a hidden slide. */
+.page[aria-hidden="true"] .scene *,.page[aria-hidden="true"] .scene *::before,.page[aria-hidden="true"] .scene *::after{animation:none!important}
+html[data-scene-paused="true"] .scene *,html[data-scene-paused="true"] .scene *::before,html[data-scene-paused="true"] .scene *::after{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){
+  .scene *,.scene *::before,.scene *::after{animation:none!important}
+  .city-spark{display:none}
+}

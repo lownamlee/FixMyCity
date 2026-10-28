@@ -1,0 +1,22 @@
+@font-face{font-family:Roboto;font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/roboto-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Roboto;font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/roboto-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+html,body,body *{font-family:Roboto,Arial,sans-serif!important}
+html,body,*,*::before,*::after{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
+html{overscroll-behavior-y:none}
+button,a,input,textarea,select{touch-action:manipulation}
+/* Shared full-width action: camera permission, welcome, and face verification. */
+.fmc-button{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:56px;padding:14px 22px;border:0;border-radius:28px;background:var(--fmc-button-background,#0868ff);color:#fff;font:600 17px/1.3 Roboto,Arial,sans-serif;text-align:center;text-decoration:none;cursor:pointer;box-shadow:none;transition:filter .2s,transform .2s}
+.fmc-button:hover:not(:disabled){filter:brightness(1.06)}
+.fmc-button:focus-visible{outline:3px solid #1264e8;outline-offset:4px}
+.fmc-button:disabled{opacity:.6;cursor:wait}
+.fmc-press-target{isolation:isolate;overflow:hidden;transform:translateY(0) scale(1)!important;scale:1!important;transition:transform 160ms cubic-bezier(.2,.8,.3,1),box-shadow 160ms ease,background 160ms ease!important}
+.fmc-press-target[data-fmc-pressed]{transform:translateY(3px) scale(.985)!important;transition:transform 75ms ease,box-shadow 75ms ease!important}
+.fmc-press-target>.fmc-press-ripple{position:absolute;z-index:-1;display:block;pointer-events:none;border-radius:50%;background:var(--ink-color);transform:scale(0);opacity:1;animation:fmc-ink-spread .9s linear forwards}
+.fmc-press-target>.fmc-press-ripple[data-releasing]{animation:fmc-ink-fade 180ms linear forwards}
+@keyframes fmc-ink-spread{from{transform:scale(0);opacity:1}to{transform:scale(1);opacity:.75}}
+@keyframes fmc-ink-fade{from{transform:var(--release-transform);opacity:var(--release-opacity,.75)}to{transform:scale(var(--release-scale));opacity:0}}
+@media(prefers-reduced-motion:reduce){.fmc-press-ripple{display:none!important;animation:none!important}.fmc-press-target,.fmc-press-target[data-fmc-pressed]{transform:none!important;transition:none!important}}
+.install-steps{margin:12px 0;padding-left:22px;color:#425b7b;line-height:1.6}
+.install-steps li{margin:10px 0}
+.fmc-replay{margin-top:12px;width:100%;color:#0064ff}
+@media(display-mode:standalone){body{overscroll-behavior:none}}

@@ -1,0 +1,38 @@
+{
+  "version": "mykad-layouts-2026-10-28-v1",
+  "reviewedAt": "2026-10-28",
+  "purpose": "Private model layout references only; not accepted identity evidence or a biometric reference.",
+  "rights": "Source rights remain with their respective owners. No open license is claimed. References are not published as app assets.",
+  "references": [
+    {
+      "id": "legacy-blue",
+      "label": "Legacy blue MyKad, front above back. PAJ redacted example; exact issuance year is not stated.",
+      "file": "sources/paj-front-back.jpg",
+      "sourcePage": "https://paj.com.my/contoh-kad-pengenalan/",
+      "sourceAsset": "https://paj.com.my/wp-content/uploads/2021/06/Contoh-Kad-Pengenalan.jpg",
+      "discovery": "Google Images: MyKad contoh hadapan belakang",
+      "processing": "Unchanged original JPEG. Source already pixelates personal fields and portrait.",
+      "sha256": "731f31bf54b01832437c59353205d213c5eaacfea2057f6308a1aae6a2f66180"
+    },
+    {
+      "id": "2012-security-portrait",
+      "label": "2012-style blue MyKad, front above back, chip on front and secondary security portrait. Official redacted CONTOH sheet.",
+      "file": "preview/johor-front-back.jpg",
+      "sourcePage": "https://simtas.ypkdt.gov.my/template/sample/IC.pdf",
+      "sourceAsset": "https://simtas.ypkdt.gov.my/template/sample/IC.pdf",
+      "discovery": "Official Johor government specimen PDF; design family cross-checked against JPN evolution graphic and JPA guide.",
+      "processing": "Complete single PDF page rendered at 144 dpi to JPEG. Redactions and CONTOH watermark preserved.",
+      "sha256": "e5a0d4cd4308e4f4c93bee75e1fb34105bd2feecd18cacfa7aa3ccbc45f97ebf"
+    },
+    {
+      "id": "2026-new-generation",
+      "label": "2026 MyKad generation: front on left, back on right. Official JPN specimen infographic with dummy repeated-digit identifiers.",
+      "file": "sources/jpn-2026-02.jpg",
+      "sourcePage": "https://www.jpn.gov.my/en/information/mykad/new-mykad-structure/",
+      "sourceAsset": "https://www.jpn.gov.my/wp-content/uploads/2026/09/mykadnewgen_02.jpg",
+      "discovery": "Google Images: MyKad contoh hadapan belakang; followed official JPN result to its specimen gallery.",
+      "processing": "Unchanged original JPEG; official specimen identifiers are placeholders.",
+      "sha256": "44d47d9bd0f799602cecb00c8e07e297f29fabab00fea5fe017ef289ea44d420"
+    }
+  ]
+}

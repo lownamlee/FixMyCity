@@ -1,0 +1,24 @@
+
+    :root { color-scheme: dark; --blue:#2788fe; --navy:#04285d; --yellow:#ffd447; }
+    * { box-sizing:border-box; }
+    html, body { width:100%; height:100%; margin:0; overflow:hidden; background:var(--blue); }
+    body { font-family:Arial, Helvetica, sans-serif; }
+    .scene { position:relative; width:100%; height:100vh; height:100dvh; padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px); overflow:hidden; isolation:isolate; background:var(--blue); }
+    .night { position:absolute; inset:0; background:radial-gradient(ellipse at 48% 45%,#0b3568 0%,#04285d 57%,#03214d 100%); clip-path:circle(0px at 50% 50%); will-change:clip-path; }
+    .arrival { position:absolute; z-index:3; width:28px; height:28px; left:50%; top:50%; border-radius:50%; background:var(--yellow); opacity:0; will-change:transform,opacity; }
+    .arrival-trail { position:absolute; z-index:2; width:42px; height:150px; left:50%; top:50%; overflow:visible; opacity:0; will-change:transform,opacity; }
+    .lockup { position:absolute; z-index:4; top:50%; left:50%; width:min(88vw,900px,150vh); transform:translate(-50%,-50%); }
+    .art { display:block; width:100%; height:auto; overflow:visible; }
+    .skyline { fill:none; stroke:#fff; stroke-width:10.8; stroke-linejoin:round; stroke-linecap:round; stroke-dasharray:1; stroke-dashoffset:1; }
+    .letter, .i-dot, #traveler, #tagline, .accent, .halo, .ripple { opacity:0; }
+    .letter { will-change:transform,opacity; }
+    .accent { fill:none; stroke:currentColor; stroke-width:2.3; stroke-linecap:round; stroke-linejoin:round; }
+    #tagline { fill:#b9cee8; font-size:26px; font-weight:400; letter-spacing:2px; text-anchor:middle; }
+    .closing-wipe { position:absolute; z-index:10; border-radius:50%; background:var(--blue); transform:translate(-50%,-50%) scale(0); pointer-events:none; will-change:transform; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    @media (max-width:600px) { #tagline { font-size:48px; letter-spacing:1.5px; } }
+    @media (max-width:480px) { .arrival { width:19px; height:19px; } }
+    @media (prefers-reduced-motion:reduce) { .arrival, .arrival-trail, .accent, .halo, .ripple, #traveler, .closing-wipe { display:none; } }
+    .intro-static .night{clip-path:none!important}.intro-static .skyline{stroke-dashoffset:0!important}.intro-static .letter,.intro-static .i-dot,.intro-static #tagline,.intro-static #logo-motion{opacity:1!important}.intro-static .arrival,.intro-static .arrival-trail,.intro-static .closing-wipe{display:none!important}
+    .intro-fallback{position:fixed;z-index:30;bottom:32px;left:50%;transform:translateX(-50%);color:#fff;background:#0064ff;padding:14px 24px;border-radius:24px;text-decoration:none}
+  

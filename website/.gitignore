@@ -1,0 +1,6 @@
+node_modules/
+.build/
+.wrangler/
+deploy/dist/
+deploy/package-manifest.json
+deploy/pages.js
