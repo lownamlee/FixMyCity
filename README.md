@@ -1,10 +1,21 @@
-<img src="docs/assets/fixmycity-logo.webp" alt="FixMyCity animated logo" width="420">
+<p align="center">
+  <img src="docs/assets/fixmycity-logo.webp" alt="FixMyCity animated logo" width="420">
+</p>
 
-![Team 404](docs/assets/team-404.svg) ![Progressive Web App](docs/assets/pwa.svg) ![Bahasa Melayu and English](docs/assets/bm-en.svg) ![Human-reviewed AI](docs/assets/human-reviewed-ai.svg) ![Civic technology](docs/assets/civic-tech.svg) ![SDGs 3, 11 and 16](docs/assets/sdgs.svg)
+<p align="center">
+  <img src="docs/assets/team-404.svg" alt="Team 404">
+  <img src="docs/assets/pwa.svg" alt="Progressive Web App">
+  <img src="docs/assets/bm-en.svg" alt="Bahasa Melayu and English">
+  <img src="docs/assets/human-reviewed-ai.svg" alt="Human-reviewed AI">
+  <img src="docs/assets/civic-tech.svg" alt="Civic technology">
+  <img src="docs/assets/sdgs.svg" alt="SDGs 3, 11 and 16">
+</p>
 
-[Overview](#overview) · [The problem](#the-problem) · [Our solution](#our-solution) · [Key features](#key-features) · [Architecture](#architecture) · [Privacy](#security-and-privacy) · [Impact](#impact-and-measurement) · [Roadmap](#roadmap)
+<p align="center">
+  <a href="#overview">Overview</a> · <a href="#the-problem">The problem</a> · <a href="#our-solution">Our solution</a> · <a href="#key-features">Key features</a> · <a href="#architecture">Architecture</a> · <a href="#security-and-privacy">Privacy</a> · <a href="#impact-and-measurement">Impact</a> · <a href="#roadmap">Roadmap</a>
+</p>
 
-### [Try FixMyCity at fixmycity.online →](https://fixmycity.online)
+<h3 align="center"><a href="https://fixmycity.online">Try FixMyCity at fixmycity.online →</a></h3>
 
 # FixMyCity
 
